@@ -18,7 +18,7 @@
  * 
 */
 
-const fragment = document.createDocumentFragment();
+const fragment = new DocumentFragment();
 const sections = document.querySelectorAll('section');
 
 /**
