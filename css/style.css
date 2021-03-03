@@ -69,6 +69,7 @@ section {
 
 .navbar__menu li {
     display: inline-block;
+    justify-content: space-between;
 }
 
 .navbar__menu .menu__link {
@@ -81,7 +82,6 @@ section {
 
 .navbar__menu .menu__link:hover {
     background: #eee;
-    color: #fff;
     transition: ease 0.3s all;
 }
 
