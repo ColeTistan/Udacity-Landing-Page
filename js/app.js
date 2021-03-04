@@ -18,7 +18,7 @@
  * 
 */
 
-const fragment = new DocumentFragment();
+const documentFragment = new DocumentFragment();
 const sections = document.querySelectorAll('section');
 
 /**
@@ -33,6 +33,15 @@ const createMenuLink = (id, dataSet) => {
     return menuLink;
 };
 
+// creates navigation item
+const createNavItem = (section) => {
+    const navItem = document.createElement('li');
+    const sectionId = section.getAttribute('id');
+    const sectionData = section.getAttribute('data-nav');
+    navItem.innerHTML = createMenuLink(sectionId, sectionData);
+    return navItem;
+}
+
 // adds active class to section
 const addSectionActive = (section) => {
     section.classList.add('your-active-class');
@@ -44,7 +53,8 @@ const removeSectionActive = (section) => {
 };
 
 // Identifies which sections are visible to the user
-const sectionInViewport = (event) => { 
+const sectionInViewport = (event) => {
+    
     // local variables for viewport
     const bounding = event.getBoundingClientRect();
     let topBounding = bounding.top;
@@ -67,18 +77,15 @@ const sectionInViewport = (event) => {
  * 
 */
 
-// build the navigation
+// build the navigation 
 const navConstructor = () => {
     for(section of sections) {
-        const navItem = document.createElement('li');
-        const sectionData = section.getAttribute('data-nav');
-        const sectionId = section.getAttribute('id');
-        navItem.innerHTML = createMenuLink(sectionId, sectionData);
-        fragment.appendChild(navItem);
+        const navItem = createNavItem(section);
+        documentFragment.appendChild(navItem);
     }
 
     const navList = document.getElementById('navbar__list');
-    navList.appendChild(fragment);
+    navList.appendChild(documentFragment);
 };
 
 // Add class 'active' to section when near top of viewport
@@ -111,10 +118,10 @@ const scrollToElement = (event) => {
 document.addEventListener('scroll', () => {
     setActiveClass();
 });
-const navBarList = document.getElementById('navbar__list')
+const navBarList = document.getElementById('navbar__list');
 navBarList.addEventListener('click', (event) => {
-    scrollToElement(event)
+    scrollToElement(event);
 })
-// Build menu 
-navConstructor()
 
+// Build menu 
+navConstructor();
