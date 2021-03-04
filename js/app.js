@@ -118,6 +118,7 @@ const scrollToElement = (event) => {
 document.addEventListener('scroll', () => {
     setActiveClass();
 });
+
 const navBarList = document.getElementById('navbar__list');
 navBarList.addEventListener('click', (event) => {
     scrollToElement(event);
